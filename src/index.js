@@ -1,13 +1,14 @@
 import cardsTpl from './tamplates/cards.hbs';
 import menu from './js/menu.json';
 import './sass/main.scss';
+import switchTheme from './js/switch-teme';
 
-const Theme = {
+export const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
 
-const refs = {
+export const refs = {
   body: document.body,
   menu: document.querySelector('.menu'),
   checkbox: document.querySelector('#theme-switch-toggle'),
@@ -31,17 +32,4 @@ refs.checkbox.addEventListener('change', switchTheme);
 
 function crieateCards() {
   return cardsTpl(menu);
-}
-
-function switchTheme(e) {
-  if (refs.body.classList.contains(Theme.LIGHT)) {
-    refs.body.classList.replace(Theme.LIGHT, Theme.DARK);
-    localStorage.setItem('theme', Theme.DARK);
-    localStorage.setItem('checked', true);
-  } else {
-    refs.body.classList.replace(Theme.DARK, Theme.LIGHT);
-    localStorage.setItem('theme', Theme.LIGHT);
-    refs.checkbox.removeAttribute('checked');
-    localStorage.removeItem('checked');
-  }
 }
